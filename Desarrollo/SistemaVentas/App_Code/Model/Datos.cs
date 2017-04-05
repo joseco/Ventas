@@ -20,6 +20,15 @@ public class Datos
     }
 
     public List<Venta> Ventas { get; set; }
+    public List<Producto> Productos { set; get; }
+
+    private string nombreAplicacion;
+
+    public string NombreAplicacion
+    {
+        get { return nombreAplicacion; }
+        set { nombreAplicacion = value; }
+    }
 
     private Datos()
     {
@@ -42,5 +51,50 @@ public class Datos
             Total = 5263.36M
         });
 
+
+
+        Productos = new List<Producto>();
+        Productos.Add(new Producto()
+        {
+            ProductoId = 1,
+            Nombre = "Coca-Cola 2Lt",
+            Precio = 10
+        });
+        Productos.Add(new Producto()
+        {
+            ProductoId = 2,
+            Nombre = "Sprite 2Lt",
+            Precio = 9.5M
+        });
+        Productos.Add(new Producto()
+        {
+            ProductoId = 3,
+            Nombre = "Fanta 2Lt",
+            Precio = 10
+        });
+        Productos.Add(new Producto()
+        {
+            ProductoId = 4,
+            Nombre = "Acuarius Manzana 2Lt",
+            Precio = 8
+        });
+        Productos.Add(new Producto()
+        {
+            ProductoId = 5,
+            Nombre = "Pepsi 2Lt",
+            Precio = 9.5M
+        });
+
     }
+
+    public Producto GetProductoById(int productoId)
+    {
+        foreach (Producto obj in Productos)
+        {
+            if (obj.ProductoId == productoId)
+                return obj;
+        }
+        return null;
+    }
+
 }

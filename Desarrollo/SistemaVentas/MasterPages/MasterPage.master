@@ -31,7 +31,7 @@
                             <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Pages/ListaVentas.aspx">Listado de Ventas</asp:HyperLink>
 
                         </li>
-                        <li><a href="#about">Registro de Ventas</a></li>
+                        <li><asp:HyperLink runat="server" NavigateUrl="~/Pages/RegistroVenta.aspx">Registro de Ventas</asp:HyperLink></li>
                     </ul>
                 </div>
                 <!--/.nav-collapse -->

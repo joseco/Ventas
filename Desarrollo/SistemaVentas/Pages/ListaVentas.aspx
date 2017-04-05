@@ -11,7 +11,13 @@
 
 
 
-    <asp:GridView ID="GridViewVentas" runat="server" CssClass="table-striped" GridLines="None" Width="100%">
+    <asp:GridView ID="GridViewVentas" runat="server" CssClass="table-striped"
+        GridLines="None" Width="100%" AutoGenerateColumns="False">
+        <Columns>
+            <asp:BoundField DataField="Cliente" HeaderText="Cliente" />
+            <asp:BoundField DataField="Nit" HeaderText="NIT" />
+            <asp:BoundField DataField="Total" HeaderText="Monto Total" />
+        </Columns>
     </asp:GridView>
     <br />
 
