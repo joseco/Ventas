@@ -84,6 +84,12 @@ public class Datos
             Nombre = "Pepsi 2Lt",
             Precio = 9.5M
         });
+        Productos.Add(new Producto()
+        {
+            ProductoId = 6,
+            Nombre = "Paceña Ice",
+            Precio = 13M
+        });
 
     }
 
