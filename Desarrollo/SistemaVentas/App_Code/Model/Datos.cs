@@ -88,8 +88,8 @@ public class Datos
         Productos.Add(new Producto()
         {
             ProductoId = 5,
-            Nombre = "Guarana 3Lt",
-            Precio = 10.5M
+            Nombre = "Guarana 2Lt",
+            Precio = 10M
         });
 
 
