@@ -85,6 +85,13 @@ public class Datos
             Precio = 9.5M
         });
 
+        Productos.Add(new Producto()
+        {
+            ProductoId = 5,
+            Nombre = "Guarana 3Lt",
+            Precio = 10.5M
+        });
+
     }
 
     public Producto GetProductoById(int productoId)
