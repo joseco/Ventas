@@ -13,6 +13,7 @@ public class Venta
     public string Cliente { get; set; }
     public string Nit { get; set; }
     public decimal Total { get; set; }
+    public DateTime Fecha { get; set; }
 
     public List<Detalle> DetalleVenta { get; set; }
 

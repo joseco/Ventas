@@ -13,7 +13,7 @@ public partial class Pages_ListaVentas : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        GridViewVentas.DataSource = Datos.Instancia.Ventas;
+        GridViewVentas.DataSource = VentaBRL.GetVentas();
         GridViewVentas.DataBind();
     }
 }

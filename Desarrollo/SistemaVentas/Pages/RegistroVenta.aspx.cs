@@ -26,7 +26,7 @@ public partial class Pages_RegistroVenta : System.Web.UI.Page
             ProductosGridView.DataSource = new List<Detalle>();
             ProductosGridView.DataBind();
 
-            ProductosComboBox.DataSource = Datos.Instancia.Productos;
+            ProductosComboBox.DataSource = ProductoBRL.GetProductos();
             ProductosComboBox.DataBind();
         }
     }
@@ -34,17 +34,22 @@ public partial class Pages_RegistroVenta : System.Web.UI.Page
     protected void BtnAgregar_Click(object sender, EventArgs e)
     {
         int productoId = Convert.ToInt32(ProductosComboBox.SelectedValue);
-        Producto objProducto = Datos.Instancia.GetProductoById(productoId);
+        
+        Producto objProducto = ProductoBRL.GetProductoById(productoId);
         decimal cantidad = Convert.ToDecimal(CantidadTextBox.Text);
 
-        VentaActual.DetalleVenta.Add(new Detalle()
+        Venta venta = VentaActual;
+
+        venta.DetalleVenta.Add(new Detalle()
         {
             Cantidad = cantidad,
             Producto = objProducto
         });
 
-        ProductosGridView.DataSource = VentaActual.DetalleVenta;
+        ProductosGridView.DataSource = venta.DetalleVenta;
         ProductosGridView.DataBind();
+
+        VentaActual = venta;
 
         BtnGuardar.Visible = true;
 
@@ -62,7 +67,7 @@ public partial class Pages_RegistroVenta : System.Web.UI.Page
             total += detalle.Subtotal;
         }
         VentaActual.Total = total;
-        Datos.Instancia.Ventas.Add(VentaActual);
+        VentaBRL.RegistrarVenta(VentaActual);
 
         Response.Redirect("ListaVentas.aspx");
     }
