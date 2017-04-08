@@ -11,6 +11,13 @@
             <div class="form-group">
                 <label>Cliente</label>
                 <asp:TextBox ID="ClienteTextBox" runat="server" CssClass="form-control"></asp:TextBox>
+
+                <asp:RequiredFieldValidator ForeColor="Red" runat="server"
+                    ControlToValidate="ClienteTextBox" Display="Dynamic"
+                    ErrorMessage="Debe ingresar el nombre del Cliente"
+                    ValidationGroup="RegistroVenta">
+                </asp:RequiredFieldValidator>
+
             </div>
         </div>
 
@@ -20,6 +27,13 @@
             <div class="form-group">
                 <label>NIT</label>
                 <asp:TextBox ID="NitTextBox" runat="server" CssClass="form-control"></asp:TextBox>
+
+                <asp:RequiredFieldValidator ForeColor="Red" runat="server"
+                    ControlToValidate="NitTextBox" Display="Dynamic" 
+                    ErrorMessage="Debe ingresar el NIT" 
+                    ValidationGroup="RegistroVenta">
+                </asp:RequiredFieldValidator>
+
             </div>
 
 
@@ -42,13 +56,28 @@
         <div class="col-md-3">
             <div class="form-group">
                 <label>Ingrese la cantidad</label>
-                <asp:TextBox ID="CantidadTextBox" runat="server" TextMode="Number" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="CantidadTextBox" runat="server"
+                    TextMode="Number" CssClass="form-control"></asp:TextBox>
+                <asp:RequiredFieldValidator ForeColor="Red" runat="server"
+                    ControlToValidate="CantidadTextBox" Display="Dynamic" 
+                    ErrorMessage="Debe ingresar la Cantidad" 
+                    ValidationGroup="AgregarArticulo">
+                </asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator runat="server" ForeColor="Red"
+                    ControlToValidate="CantidadTextBox" Display="Dynamic" 
+                    ErrorMessage="Debe ingresar un numero" 
+                    ValidationExpression="[0-9]*"
+                    ValidationGroup="AgregarArticulo">
+                </asp:RegularExpressionValidator>
             </div>
         </div>
         <div class="col-md-3">
            <div class="form-group">
                 <br />
-                <asp:Button ID="BtnAgregar" runat="server" Text="Agregar Articulo" CssClass="btn btn-primary" OnClick="BtnAgregar_Click" />
+                <asp:Button ID="BtnAgregar" runat="server"
+                    Text="Agregar Articulo" CssClass="btn btn-primary"
+                    OnClick="BtnAgregar_Click" 
+                    ValidationGroup="AgregarArticulo" />
             </div>
         </div>
     </div>
@@ -91,10 +120,12 @@
             <br />
             <asp:Button ID="BtnGuardar" runat="server"
                 CssClass="btn btn-primary"
-                Text="Registrar Venta" Visible="false" OnClick="BtnGuardar_Click" />
+                Text="Registrar Venta" Visible="false" OnClick="BtnGuardar_Click"
+                ValidationGroup="RegistroVenta" />
         </div>
     </div>
 
 
 </asp:Content>
 
+    

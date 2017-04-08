@@ -40,11 +40,28 @@ public partial class Pages_RegistroVenta : System.Web.UI.Page
 
         Venta venta = VentaActual;
 
-        venta.DetalleVenta.Add(new Detalle()
+        bool esNuevo = true;
+
+        foreach (Detalle objDetalle in venta.DetalleVenta)
         {
-            Cantidad = cantidad,
-            Producto = objProducto
-        });
+            if (productoId == objDetalle.ProductoId)
+            {
+                objDetalle.Cantidad += cantidad;
+                esNuevo = false;
+                break;
+            }
+        }
+
+        if (esNuevo)
+        {
+            venta.DetalleVenta.Add(new Detalle()
+            {
+                Cantidad = cantidad,
+                Producto = objProducto
+            });
+        }
+
+        CantidadTextBox.Text = "";
 
         ProductosGridView.DataSource = venta.DetalleVenta;
         ProductosGridView.DataBind();
