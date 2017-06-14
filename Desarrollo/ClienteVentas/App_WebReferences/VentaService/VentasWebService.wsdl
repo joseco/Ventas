@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetVentas">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetVentasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetVentasResult" type="tns:ArrayOfVenta" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfVenta">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Venta" nillable="true" type="tns:Venta" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Venta">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="VentaId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nit" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Total" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Fecha" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="DetalleVenta" type="tns:ArrayOfDetalle" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDetalle">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Detalle" nillable="true" type="tns:Detalle" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Detalle">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Producto" type="tns:Producto" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cantidad" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Producto">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ProductoId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Precio" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetProductos">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetProductosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProductosResult" type="tns:ArrayOfProducto" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfProducto">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Producto" nillable="true" type="tns:Producto" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetProductoById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="productoId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProductoByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProductoByIdResult" type="tns:Producto" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetVentasSoapIn">
+    <wsdl:part name="parameters" element="tns:GetVentas" />
+  </wsdl:message>
+  <wsdl:message name="GetVentasSoapOut">
+    <wsdl:part name="parameters" element="tns:GetVentasResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProductosSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProductos" />
+  </wsdl:message>
+  <wsdl:message name="GetProductosSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProductosResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProductoByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProductoById" />
+  </wsdl:message>
+  <wsdl:message name="GetProductoByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProductoByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:portType name="VentasWebServiceSoap">
+    <wsdl:operation name="GetVentas">
+      <wsdl:input message="tns:GetVentasSoapIn" />
+      <wsdl:output message="tns:GetVentasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductos">
+      <wsdl:input message="tns:GetProductosSoapIn" />
+      <wsdl:output message="tns:GetProductosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductoById">
+      <wsdl:input message="tns:GetProductoByIdSoapIn" />
+      <wsdl:output message="tns:GetProductoByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="VentasWebServiceSoap" type="tns:VentasWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetVentas">
+      <soap:operation soapAction="http://tempuri.org/GetVentas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductos">
+      <soap:operation soapAction="http://tempuri.org/GetProductos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductoById">
+      <soap:operation soapAction="http://tempuri.org/GetProductoById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="VentasWebServiceSoap12" type="tns:VentasWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetVentas">
+      <soap12:operation soapAction="http://tempuri.org/GetVentas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductos">
+      <soap12:operation soapAction="http://tempuri.org/GetProductos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductoById">
+      <soap12:operation soapAction="http://tempuri.org/GetProductoById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="VentasWebService">
+    <wsdl:port name="VentasWebServiceSoap" binding="tns:VentasWebServiceSoap">
+      <soap:address location="http://localhost:64089/Services/VentasWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="VentasWebServiceSoap12" binding="tns:VentasWebServiceSoap12">
+      <soap12:address location="http://localhost:64089/Services/VentasWebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
